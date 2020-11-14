@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 门店表的映射文件 namespace值为对应接口的全路径 -->
+<mapper namespace="com.tedu.dao.EmpMapper">
+	<resultMap type="com.tedu.pojo.Emp" id="empRM">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="job" property="job"/>
+		<result column="hire_date" property="hireDate"/>
+		<result column="door_id" property="doorId"/>
+		<result column="salary" property="salary"/>
+	</resultMap>
+	<select id="empFindById" resultMap="empRM">
+		select * from tb_emp where id=#{id}
+	</select>
+	<select id="empFindAll" resultMap="empRM">
+		select * from tb_emp
+	</select>
+	<insert id="empInsert">
+		insert into tb_emp 
+		(id,name,job,hire_date,door_id,salary) 
+		values 
+		(null,#{name},#{job},#{hireDate},#{doorId},#{salary})
+	</insert>
+	<update id="empUpdate">
+		update tb_emp set name=#{name},job=#{job},
+		hire_date=#{hireDate},door_id=#{doorId},salary=#{salary} where id=#{id}
+	</update>
+
+</mapper>
